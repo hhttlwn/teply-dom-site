@@ -26,11 +26,13 @@
 @media(max-width:800px){.calculator{padding:76px 0}.calc-heading{display:block}.calc-heading p{margin-top:15px}.calc-grid{grid-template-columns:1fr}.calc-result{min-height:340px}.calc-whatsapp{display:grid;grid-template-columns:1fr 1fr}}
 @media(max-width:420px){.calc-whatsapp{grid-template-columns:1fr}.calc-result{min-height:0}.calc-length{grid-template-columns:40px 1fr 40px}.calc-length small{grid-column:2/-1}}
 .kitchen-preview{margin-top:28px;padding:18px 18px 14px;background:#f1eee7;border:1px solid #d8d4ca;overflow:hidden}.kitchen-preview-head{display:flex;justify-content:space-between;gap:12px;align-items:baseline;margin-bottom:16px}.kitchen-preview-head strong{font:400 18px var(--serif)}.kitchen-preview-head span,.kitchen-preview-note{font-size:9px;color:var(--muted)}.kitchen-visual{width:56%;min-width:34%;max-width:100%;transition:width .35s ease}.kitchen-visual svg{display:block;width:100%;height:auto;overflow:visible}.kitchen-preview-note{margin:12px 0 0;line-height:1.6}</style></head>
+.wardrobe{padding:8px 0 110px}.wardrobe-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.wardrobe-form{background:#e5e0d6;padding:clamp(24px,4vw,42px)}.wardrobe-form .calc-field{margin-bottom:22px}.wardrobe-result{background:#4c5846;color:#f5f1e9;padding:clamp(25px,4vw,42px);display:flex;flex-direction:column;justify-content:space-between}.wardrobe-result .eyebrow{color:#d6d9cc}.wardrobe-result h3{font:400 28px var(--serif);margin:13px 0 8px}.wardrobe-result p{font-size:11px;line-height:1.8;color:#d8dacd}.wardrobe-prices{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:26px 0}.wardrobe-price{padding:16px 0;border-top:1px solid #ffffff45}.wardrobe-price span{display:block;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:#d8dacd}.wardrobe-price strong{display:block;margin-top:9px;font:400 clamp(20px,2.4vw,28px)/1.15 var(--serif)}.wardrobe-whatsapp{display:flex;gap:8px;flex-wrap:wrap}.wardrobe-whatsapp a{min-height:42px;padding:0 13px;border:1px solid #ffffff7c;display:inline-flex;align-items:center;justify-content:center;font-size:9px}.wardrobe-note{font-size:9px!important;color:#d8dacd;margin-top:14px}@media(max-width:800px){.wardrobe{padding:0 0 76px}.wardrobe-grid{grid-template-columns:1fr}.wardrobe-result{min-height:320px}}@media(max-width:420px){.wardrobe-prices{grid-template-columns:1fr 1fr}.wardrobe-whatsapp{display:grid;grid-template-columns:1fr 1fr}}
+</style></head>
 <body>
   <div class="shell topline"><span>Мебель на заказ · Бишкек</span><span>Бесплатная доставка по городу</span></div>
   <header class="shell">
     <a class="brand" href="#top" aria-label="Jampo style — на главную"><span class="brand-mark">J</span><span class="brand-name">Jampo style<small>мебель на заказ</small></span></a>
-    <nav aria-label="Главное меню"><a href="#collection">Направления</a><a href="#calculator">Калькулятор</a><a href="#process">Как работаем</a><a href="#contact">Контакты</a></nav>
+    <nav aria-label="Главное меню"><a href="#collection">Направления</a><a href="#calculator">Кухни</a><a href="#wardrobe">Шкафы</a><a href="#process">Как работаем</a><a href="#contact">Контакты</a></nav>
     <a class="header-contact" href="tel:+996555424216">Связаться&nbsp; ↗</a>
   </header>
   <main id="top">
@@ -75,7 +77,25 @@
         <div class="calc-whatsapp"><a id="whatsapp-one" href="https://wa.me/996555424216" target="_blank" rel="noreferrer">WhatsApp · 0555 424 216 ↗</a><a id="whatsapp-two" href="https://wa.me/996556117760" target="_blank" rel="noreferrer">WhatsApp · 0556 117 760 ↗</a></div><p class="calc-note">Расчёт примерный. Точную стоимость подтвердим после согласования размеров и комплектации.</p></div>
     </div>
   </div>
-</section><section class="shell contact" id="contact"><div class="contact-box"><div class="contact-copy"><div class="eyebrow">Ваш дом, ваша история</div><h2>Есть идея?<br>Давайте обсудим.</h2><p>Позвоните или напишите — обсудим вашу идею, сроки и стоимость.</p><div class="contact-links"><a class="button" href="tel:+996555424216">0555 424 216 <span>Позвонить&nbsp; ↗</span></a><a class="button" href="tel:+996556117760">0556 117 760 <span>Позвонить&nbsp; ↗</span></a></div></div></div></section>
+</section>
+<section class="shell wardrobe" id="wardrobe">
+  <div class="calc-heading"><div><div class="eyebrow">Подбор и оценка</div><h2>Классификатор шкафов</h2></div><p>Выбери тип шкафа и укажи ширину и высоту. Стоимость считается по площади фасада.</p></div>
+  <div class="wardrobe-grid">
+    <div class="wardrobe-form">
+      <label class="calc-field" for="wardrobe-type"><span>Тип шкафа</span><select id="wardrobe-type"><option value="hinged">Распашной</option><option value="sliding">Шкаф-купе</option></select></label>
+      <label class="calc-field" for="wardrobe-width"><span>Ширина</span><input id="wardrobe-width" type="number" min="40" max="600" step="5" value="200" inputmode="decimal"></label>
+      <label class="calc-field" for="wardrobe-height"><span>Высота</span><input id="wardrobe-height" type="number" min="50" max="350" step="5" value="220" inputmode="decimal"></label>
+      <p class="calc-helper">Размеры укажи в сантиметрах. Площадь фасада вычисляется как ширина × высота.</p>
+    </div>
+    <div class="wardrobe-result" aria-live="polite">
+      <div><div class="eyebrow">Примерная стоимость</div><h3 id="wardrobe-title">Распашной шкаф</h3><p id="wardrobe-area">Площадь фасада: 4,4 м² · 75–105 $/м²</p>
+        <div class="wardrobe-prices"><div class="wardrobe-price"><span>В сомах</span><strong id="wardrobe-som">28 900–40 400 сом</strong></div><div class="wardrobe-price"><span>В долларах</span><strong id="wardrobe-usd">330–462 $</strong></div></div>
+      </div>
+      <div><div class="wardrobe-whatsapp"><a id="wardrobe-whatsapp-one" href="https://wa.me/996555424216" target="_blank" rel="noreferrer">WhatsApp · 0555 424 216 ↗</a><a id="wardrobe-whatsapp-two" href="https://wa.me/996556117760" target="_blank" rel="noreferrer">WhatsApp · 0556 117 760 ↗</a></div><p class="wardrobe-note">Расчёт ориентировочный. Сомовый эквивалент пересчитывается по курсу НБКР на 28.10.2026: 1 $ = 87,4492 сом. Точную цену подтвердит мастер.</p></div>
+    </div>
+  </div>
+</section>
+<section class="shell contact" id="contact"><div class="contact-box"><div class="contact-copy"><div class="eyebrow">Ваш дом, ваша история</div><h2>Есть идея?<br>Давайте обсудим.</h2><p>Позвоните или напишите — обсудим вашу идею, сроки и стоимость.</p><div class="contact-links"><a class="button" href="tel:+996555424216">0555 424 216 <span>Позвонить&nbsp; ↗</span></a><a class="button" href="tel:+996556117760">0556 117 760 <span>Позвонить&nbsp; ↗</span></a></div></div></div></section>
   </main>
   <footer class="shell"><a class="brand" href="#top"><span class="brand-mark">J</span><span class="brand-name">Jampo style<small>мебель на заказ</small></span></a><span>Доставка по Бишкеку — бесплатно</span><span>Бишкек · Кыргызстан</span><div class="credits">Фото интерьеров: <a href="https://unsplash.com/photos/modern-living-room-with-minimalist-furniture-and-decor-e0oJLc5FYsg" target="_blank" rel="noreferrer">GoodLifeConstruction</a>, <a href="https://unsplash.com/photos/modern-living-room-with-a-large-white-sofa-and-artwork-JXFnfu15SgI" target="_blank" rel="noreferrer">Puscas Adryan</a> и <a href="https://unsplash.com/photos/modern-living-room-with-stylish-furniture-and-large-windows-FL-ZcDK8tMo" target="_blank" rel="noreferrer">Clay Banks</a> / Unsplash.</div></footer>
 <script>
@@ -140,6 +160,33 @@
   lengthInput.addEventListener("input",update);
   document.getElementById("length-minus").addEventListener("click",function(){lengthInput.value=String(Math.max(0.5,Number(lengthInput.value||0.5)-0.1).toFixed(1));update();});
   document.getElementById("length-plus").addEventListener("click",function(){lengthInput.value=String(Math.min(30,Number(lengthInput.value||0.5)+0.1).toFixed(1));update();});
+  const wardrobeRates={hinged:{min:75,max:105,label:"Распашной шкаф"},sliding:{min:120,max:180,label:"Шкаф-купе"}};
+  const wardrobeType=document.getElementById("wardrobe-type");
+  const wardrobeWidth=document.getElementById("wardrobe-width");
+  const wardrobeHeight=document.getElementById("wardrobe-height");
+  const usdFmt=new Intl.NumberFormat("ru-RU",{maximumFractionDigits:0});
+  const somFmt=new Intl.NumberFormat("ru-RU",{maximumFractionDigits:0});
+  function updateWardrobe(){
+    const item=wardrobeRates[wardrobeType.value];
+    let width=Number(wardrobeWidth.value),height=Number(wardrobeHeight.value);
+    if(!Number.isFinite(width)||width<40)width=40;if(width>600)width=600;
+    if(!Number.isFinite(height)||height<50)height=50;if(height>350)height=350;
+    width=Math.round(width);height=Math.round(height);
+    wardrobeWidth.value=String(width);wardrobeHeight.value=String(height);
+    const area=width*height/10000;
+    const minUsd=area*item.min,maxUsd=area*item.max;
+    const minSom=Math.round(minUsd*87.4492/100)*100,maxSom=Math.round(maxUsd*87.4492/100)*100;
+    const areaLabel=String(area.toFixed(2)).replace(".",",").replace(/,?0+$/g,"");
+    document.getElementById("wardrobe-title").textContent=item.label;
+    document.getElementById("wardrobe-area").textContent="Площадь фасада: "+areaLabel+" м² · "+item.min+"–"+item.max+" $/м²";
+    document.getElementById("wardrobe-som").textContent=somFmt.format(minSom)+"–"+somFmt.format(maxSom)+" сом";
+    document.getElementById("wardrobe-usd").textContent=usdFmt.format(minUsd)+"–"+usdFmt.format(maxUsd)+" $";
+    const message="Здравствуйте! Хочу рассчитать шкаф: "+item.label.toLowerCase()+", ширина "+width+" см, высота "+height+" см, площадь фасада "+areaLabel+" м². Предварительная оценка: "+usdFmt.format(minUsd)+"–"+usdFmt.format(maxUsd)+" $ / "+somFmt.format(minSom)+"–"+somFmt.format(maxSom)+" сом.";
+    const query=encodeURIComponent(message);
+    document.getElementById("wardrobe-whatsapp-one").href="https://wa.me/996555424216?text="+query;
+    document.getElementById("wardrobe-whatsapp-two").href="https://wa.me/996556117760?text="+query;
+  }
+  wardrobeType.addEventListener("change",updateWardrobe);wardrobeWidth.addEventListener("input",updateWardrobe);wardrobeHeight.addEventListener("input",updateWardrobe);updateWardrobe();
   update();
 })();
 </script></body>
