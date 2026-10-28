@@ -25,7 +25,7 @@
 .calculator{padding:100px 0 112px}.calc-heading{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:34px}.calc-heading .eyebrow{color:var(--olive)}.calc-heading h2{font:400 clamp(38px,5vw,58px)/1 var(--serif);letter-spacing:-.045em;margin:13px 0 0}.calc-heading p{max-width:350px;margin:0 0 4px;color:var(--muted);font-size:11px;line-height:1.85}.calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.calc-form{background:#e5e0d6;padding:clamp(24px,4vw,42px)}.calc-field{display:block;margin-bottom:23px}.calc-field>span{display:block;margin-bottom:9px;font-size:9px;letter-spacing:.13em;text-transform:uppercase;color:#68675e}.calc-field select,.calc-field input{width:100%;height:51px;padding:0 14px;border:1px solid #d1ccc1;background:#f7f5ef;color:var(--ink);font:14px var(--sans);border-radius:0}.calc-field select:focus,.calc-field input:focus{outline:2px solid var(--olive);outline-offset:2px}.calc-detail{min-height:46px;margin:-14px 0 22px;color:var(--muted);font-size:11px;line-height:1.7}.calc-length{display:grid;grid-template-columns:44px 1fr 44px auto;gap:8px;align-items:center}.calc-length button{height:48px;border:1px solid #d1ccc1;background:#f7f5ef;color:var(--ink);font:20px var(--sans);cursor:pointer}.calc-length input{height:48px;text-align:center}.calc-length small{font-size:10px;color:var(--muted);white-space:nowrap}.calc-helper{font-size:10px;color:var(--muted);line-height:1.7;margin:7px 0 0}.calc-result{min-height:100%;background:var(--olive);color:#f5f1e9;padding:clamp(25px,4vw,42px);display:flex;flex-direction:column;justify-content:space-between}.calc-result .eyebrow{color:#d6d9cc}.calc-result h3{font:400 28px var(--serif);margin:13px 0 5px}.calc-total{display:block;font:400 clamp(31px,4vw,46px)/1.1 var(--serif);letter-spacing:-.035em;margin:17px 0 8px}.calc-per-meter{color:#d8dacd;font-size:11px}.calc-includes{border-top:1px solid #ffffff35;margin:27px 0 22px;padding-top:19px}.calc-includes strong{display:block;font-size:9px;letter-spacing:.12em;text-transform:uppercase;font-weight:400;margin-bottom:9px}.calc-includes p{margin:0;color:#d8dacd;font-size:10px;line-height:1.9}.calc-whatsapp{display:flex;gap:8px;flex-wrap:wrap}.calc-whatsapp a{min-height:42px;padding:0 13px;border:1px solid #ffffff7c;display:inline-flex;align-items:center;justify-content:center;font-size:9px;letter-spacing:.04em;transition:all .2s}.calc-whatsapp a:hover{background:#f5f1e9;color:var(--olive)}.calc-note{margin:16px 0 0;color:#d8dacd;font-size:9px;line-height:1.7}
 @media(max-width:800px){.calculator{padding:76px 0}.calc-heading{display:block}.calc-heading p{margin-top:15px}.calc-grid{grid-template-columns:1fr}.calc-result{min-height:340px}.calc-whatsapp{display:grid;grid-template-columns:1fr 1fr}}
 @media(max-width:420px){.calc-whatsapp{grid-template-columns:1fr}.calc-result{min-height:0}.calc-length{grid-template-columns:40px 1fr 40px}.calc-length small{grid-column:2/-1}}
-</style></head>
+.kitchen-preview{margin-top:28px;padding:18px 18px 14px;background:#f1eee7;border:1px solid #d8d4ca;overflow:hidden}.kitchen-preview-head{display:flex;justify-content:space-between;gap:12px;align-items:baseline;margin-bottom:16px}.kitchen-preview-head strong{font:400 18px var(--serif)}.kitchen-preview-head span,.kitchen-preview-note{font-size:9px;color:var(--muted)}.kitchen-visual{width:56%;min-width:34%;max-width:100%;transition:width .35s ease}.kitchen-visual svg{display:block;width:100%;height:auto;overflow:visible}.kitchen-preview-note{margin:12px 0 0;line-height:1.6}</style></head>
 <body>
   <div class="shell topline"><span>Мебель на заказ · Бишкек</span><span>Бесплатная доставка по городу</span></div>
   <header class="shell">
@@ -67,6 +67,7 @@
         <p class="calc-helper">Укажи общую длину кухонного гарнитура в погонных метрах.</p>
       </label>
       <p class="calc-helper">Цвета фасадов добавим позже. Дорогую фурнитуру и другие сочетания рассчитаем индивидуально.</p>
+      <div class="kitchen-preview"><div class="kitchen-preview-head"><strong>Так выглядит длина</strong><span id="visual-length">3 пог. м</span></div><div class="kitchen-visual" id="kitchen-visual" aria-label="Схема кухонного гарнитура спереди"></div><p class="kitchen-preview-note">Схематичный вид спереди. Планировка и детали уточняются при заказе.</p></div>
     </div>
     <div class="calc-result" aria-live="polite">
       <div><div class="eyebrow">Предварительная оценка</div><h3 id="estimate-title">Эконом-комплектация · 3 пог. м</h3><strong class="calc-total" id="estimate-total">51 000–75 000 сом</strong><span class="calc-per-meter" id="estimate-per-meter">17 000–25 000 сом за погонный метр</span></div>
@@ -89,6 +90,28 @@
   const perMeter=document.getElementById("estimate-per-meter");
   const title=document.getElementById("estimate-title");
   const detail=document.getElementById("package-detail");
+  const visual=document.getElementById("kitchen-visual");
+  const visualLength=document.getElementById("visual-length");
+  function drawKitchen(length,packageKey){
+    const modules=Math.max(2,Math.min(12,Math.round(length*1.15)));
+    const unit=68,pad=18,width=modules*unit+pad*2;
+    const facade=packageKey==="recommended"?"#e8e3d9":"#b9a98e";
+    const parts=['<svg viewBox="0 0 '+width+' 220" role="img" aria-label="Кухня из '+modules+' секций">','<rect x="0" y="0" width="'+width+'" height="220" fill="#e9e5dc"/>','<path d="M0 188H'+width+'" stroke="#c8c1b5" stroke-width="2"/>'];
+    for(let i=0;i<modules;i++){
+      const x=pad+i*unit;
+      parts.push('<rect x="'+(x+4)+'" y="43" width="60" height="57" fill="'+facade+'" stroke="#77766d" stroke-width="1.4"/>');
+      parts.push('<line x1="'+(x+34)+'" y1="46" x2="'+(x+34)+'" y2="97" stroke="#77766d"/><path d="M'+(x+28)+' 68h2m8 0h2" stroke="#77766d" stroke-width="2"/>');
+      parts.push('<rect x="'+(x+2)+'" y="111" width="64" height="69" fill="'+facade+'" stroke="#77766d" stroke-width="1.5"/>');
+      parts.push('<line x1="'+(x+34)+'" y1="113" x2="'+(x+34)+'" y2="178" stroke="#77766d"/><path d="M'+(x+29)+' 139h2m6 0h2" stroke="#77766d" stroke-width="2"/>');
+    }
+    parts.push('<rect x="'+(pad-2)+'" y="102" width="'+(width-2*pad+4)+'" height="8" fill="#77766d"/><rect x="'+(pad-2)+'" y="100" width="'+(width-2*pad+4)+'" height="3" fill="#d7d0c4"/>');
+    const sinkX=pad+Math.floor(modules/2)*unit+14;
+    parts.push('<rect x="'+sinkX+'" y="88" width="39" height="12" rx="5" fill="#b8c0ba" stroke="#77766d"/><path d="M'+(sinkX+15)+' 88v-8q0-6 6-6t6 6v2" fill="none" stroke="#77766d" stroke-width="2"/>');
+    parts.push('<rect x="'+(pad+2)+'" y="182" width="'+(width-2*pad)+'" height="5" fill="#706d63"/><text x="'+(width/2)+'" y="211" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" letter-spacing="1" fill="#77766d">ВИД СПЕРЕДИ · '+modules+' СЕКЦИЙ</text></svg>');
+    visual.innerHTML=parts.join("");
+    visual.style.width=Math.min(100,32+Math.min(length,8)*8.5)+"%";
+    visualLength.textContent=String(length).replace(".",",")+" пог. м";
+  }
   const fmt=new Intl.NumberFormat("ru-RU");
   function update(){
     const packageKey=packageInput.value;
@@ -102,6 +125,7 @@
     const max=Math.round(item.max*length);
     const lengthLabel=String(length).replace(".",",");
     title.textContent=item.label+" · "+lengthLabel+" пог. м";
+    drawKitchen(length,packageKey);
     detail.textContent=item.detail;
     total.textContent=fmt.format(min)+"–"+fmt.format(max)+" сом";
     perMeter.textContent=fmt.format(item.min)+"–"+fmt.format(item.max)+" сом за погонный метр";
