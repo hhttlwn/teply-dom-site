@@ -51,12 +51,35 @@
 .kitchen-preview{margin-top:28px;padding:18px 18px 14px;background:#f1eee7;border:1px solid #d8d4ca;overflow:hidden}.kitchen-preview-head{display:flex;justify-content:space-between;gap:12px;align-items:baseline;margin-bottom:16px}.kitchen-preview-head strong{font:400 18px var(--serif)}.kitchen-preview-head span,.kitchen-preview-note{font-size:9px;color:var(--muted)}.kitchen-visual{width:56%;min-width:34%;max-width:100%;transition:width .35s ease}.kitchen-visual svg{display:block;width:100%;height:auto;overflow:visible}.kitchen-preview-note{margin:12px 0 0;line-height:1.6}</style>
 <style>
 .social{display:flex;justify-content:space-between;align-items:center;gap:35px;padding:52px clamp(25px,5vw,64px);margin-bottom:38px;background:#e5e0d6}.social-copy{max-width:590px}.social-copy .eyebrow{color:var(--olive)}.social-copy h2{font:400 clamp(32px,4vw,48px)/1.05 var(--serif);letter-spacing:-.04em;margin:13px 0}.social-copy p{font-size:11px;line-height:1.8;color:var(--muted);max-width:390px}.social-copy .button{margin-top:10px;background:var(--olive);color:#fff}.social-copy .button:hover{background:var(--clay)}.social-qr{display:flex;flex-direction:column;align-items:center;gap:10px;padding:12px;background:#fff;flex:0 0 auto}.social-qr img{display:block;width:150px;height:150px}.social-qr span{font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}@media(max-width:600px){.social{padding:30px 22px;flex-direction:column;align-items:flex-start}.social-qr{align-self:center}}.wardrobe{padding:8px 0 110px}.wardrobe-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.wardrobe-form{background:#e5e0d6;padding:clamp(24px,4vw,42px)}.wardrobe-form .calc-field{margin-bottom:22px}.wardrobe-result{background:#4c5846;color:#f5f1e9;padding:clamp(25px,4vw,42px);display:flex;flex-direction:column;justify-content:space-between}.wardrobe-result .eyebrow{color:#d6d9cc}.wardrobe-result h3{font:400 28px var(--serif);margin:13px 0 8px}.wardrobe-result p{font-size:11px;line-height:1.8;color:#d8dacd}.wardrobe-prices{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:26px 0}.wardrobe-price{padding:16px 0;border-top:1px solid #ffffff45}.wardrobe-price span{display:block;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:#d8dacd}.wardrobe-price strong{display:block;margin-top:9px;font:400 clamp(20px,2.4vw,28px)/1.15 var(--serif)}.wardrobe-whatsapp{display:flex;gap:8px;flex-wrap:wrap}.wardrobe-whatsapp a{min-height:42px;padding:0 13px;border:1px solid #ffffff7c;display:inline-flex;align-items:center;justify-content:center;font-size:9px}.wardrobe-note{font-size:9px!important;color:#d8dacd;margin-top:14px}@media(max-width:800px){.wardrobe{padding:0 0 76px}.wardrobe-grid{grid-template-columns:1fr}.wardrobe-result{min-height:320px}}@media(max-width:420px){.wardrobe-prices{grid-template-columns:1fr 1fr}.wardrobe-whatsapp{display:grid;grid-template-columns:1fr 1fr}}
-</style></head>
+</style>
+<style>
+.request{padding:0 0 96px;scroll-margin-top:24px}
+.request-panel{display:grid;grid-template-columns:.85fr 1.15fr;background:#e5e0d6}
+.request-copy{padding:clamp(28px,5vw,58px);background:#424a3d;color:#f5f1e9;display:flex;flex-direction:column;justify-content:space-between}
+.request-copy .eyebrow{color:#d6d9cc}
+.request-copy h2{font:400 clamp(38px,5vw,58px)/1 var(--serif);letter-spacing:-.045em;margin:16px 0}
+.request-copy p{max-width:370px;color:#d8dacd;font-size:11px;line-height:1.9}
+.request-copy .request-mark{font:italic 15px var(--serif);color:#d49a78;margin-top:25px}
+.request-form{padding:clamp(25px,4vw,48px)}
+.request-form .calc-field{margin-bottom:19px}
+.request-form input,.request-form select,.request-form textarea{width:100%;border:1px solid #d1ccc1;background:#f7f5ef;color:var(--ink);font:13px var(--sans);border-radius:0;padding:13px 14px}
+.request-form input,.request-form select{height:49px}
+.request-form textarea{min-height:92px;resize:vertical}
+.request-form input:focus,.request-form select:focus,.request-form textarea:focus{outline:2px solid var(--olive);outline-offset:2px}
+.request-actions{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:22px}
+.request-actions .button{background:var(--olive);color:#fff;border:0;cursor:pointer;font-family:var(--sans);font-size:9px;letter-spacing:.08em}
+.request-actions .button:hover{background:var(--clay)}
+.request-hint{font-size:9px;color:var(--muted);line-height:1.7;margin:13px 0 0}
+@media(max-width:800px){.request{padding-bottom:72px}.request-panel{grid-template-columns:1fr}.request-copy{min-height:280px}.request-copy .request-mark{margin-top:10px}}
+@media(max-width:420px){.request-actions{grid-template-columns:1fr}}
+</style>
+
+</head>
 <body>
   <div class="shell topline"><span>Мебель на заказ · Бишкек</span><span>Бесплатная доставка по городу</span></div>
   <header class="shell">
     <a class="brand" href="#top" aria-label="Jampo style — на главную"><span class="brand-mark">J</span><span class="brand-name">Jampo style<small>мебель на заказ</small></span></a>
-    <nav aria-label="Главное меню"><a href="#collection">Направления</a><a href="#calculator">Кухни</a><a href="#wardrobe">Шкафы</a><a href="#process">Как работаем</a><a href="#contact">Контакты</a></nav>
+    <nav aria-label="Главное меню"><a href="#collection">Направления</a><a href="#calculator">Кухни</a><a href="#wardrobe">Шкафы</a><a href="#process">Как работаем</a><a href="#request">Заявка</a><a href="#contact">Контакты</a></nav>
     <a class="header-contact" href="tel:+996555424216">Связаться&nbsp; ↗</a>
   </header>
   <main id="top">
@@ -119,7 +142,23 @@
     </div>
   </div>
 </section>
-<section class="shell contact" id="contact"><div class="contact-box"><div class="contact-copy"><div class="eyebrow">Ваш дом, ваша история</div><h2>Есть идея?<br>Давайте обсудим.</h2><p>Позвоните или напишите — обсудим вашу идею, сроки и стоимость.</p><div class="contact-links"><a class="button" href="tel:+996555424216">0555 424 216 <span>Позвонить&nbsp; ↗</span></a><a class="button" href="tel:+996556117760">0556 117 760 <span>Позвонить&nbsp; ↗</span></a></div></div></div></section>
+<section class="shell request" id="request" aria-labelledby="request-title">
+    <div class="request-panel">
+      <div class="request-copy">
+        <div><div class="eyebrow">Начнём с вашей идеи</div><h2 id="request-title">Расскажите,<br>что создать.</h2><p>Оставьте короткую заявку — мастер уточнит детали, материалы и стоимость в WhatsApp.</p></div>
+        <div class="request-mark">Jampo style · мебель на заказ в Бишкеке</div>
+      </div>
+      <form class="request-form" id="request-form">
+        <label class="calc-field"><span>Какая мебель нужна?</span><select name="type" required><option value="Кухня">Кухня</option><option value="Шкаф">Шкаф</option><option value="Другая мебель">Другая мебель</option></select></label>
+        <label class="calc-field"><span>Ваше имя</span><input name="name" type="text" autocomplete="name" placeholder="Как к вам обращаться?"></label>
+        <label class="calc-field"><span>Размеры</span><input name="sizes" type="text" placeholder="Например: длина кухни 3 м"></label>
+        <label class="calc-field"><span>Пожелания</span><textarea name="details" placeholder="Материал, цвет или другие детали"></textarea></label>
+        <div class="request-actions"><button class="button" type="submit" data-phone="996555424216">WhatsApp · 0555 424 216 ↗</button><button class="button" type="submit" data-phone="996556117760">WhatsApp · 0556 117 760 ↗</button></div>
+        <p class="request-hint">Откроется WhatsApp с готовым сообщением. Проверьте его и нажмите «Отправить».</p>
+      </form>
+    </div>
+  </section>
+  <section class="shell contact" id="contact"><div class="contact-box"><div class="contact-copy"><div class="eyebrow">Ваш дом, ваша история</div><h2>Есть идея?<br>Давайте обсудим.</h2><p>Позвоните или напишите — обсудим вашу идею, сроки и стоимость.</p><div class="contact-links"><a class="button" href="tel:+996555424216">0555 424 216 <span>Позвонить&nbsp; ↗</span></a><a class="button" href="tel:+996556117760">0556 117 760 <span>Позвонить&nbsp; ↗</span></a></div></div></div></section>
   </main>
   <section class="shell social" aria-label="Instagram Jampo style"><div class="social-copy"><div class="eyebrow">Jampo style онлайн</div><h2>Больше наших работ — в Instagram</h2><p>Подписывайтесь на мастерскую и смотрите новые идеи мебели на заказ.</p><a class="button" href="https://www.instagram.com/jampo_style/" target="_blank" rel="noreferrer">Открыть Instagram · @jampo_style ↗</a></div><a class="social-qr" href="https://www.instagram.com/jampo_style/" target="_blank" rel="noreferrer" aria-label="Открыть Instagram Jampo style по QR-коду"><img src="https://api.qrserver.com/v1/create-qr-code/?size=240x240&amp;format=svg&amp;data=https%3A%2F%2Fwww.instagram.com%2Fjampo_style%2F" alt="QR-код Instagram @jampo_style"><span>Наведите камеру</span></a></section><footer class="shell"><a class="brand" href="#top"><span class="brand-mark">J</span><span class="brand-name">Jampo style<small>мебель на заказ</small></span></a><span>Доставка по Бишкеку — бесплатно</span><span>Бишкек · Кыргызстан</span><div class="credits">Фото интерьеров: <a href="https://unsplash.com/photos/spacious-modern-living-room-with-white-sofas-and-fireplace-yQvGZRrnk30" target="_blank" rel="noreferrer">GoodLifeConstruction</a>, <a href="https://unsplash.com/photos/modern-living-room-with-large-windows-overlooking-trees-A9DmoCgM5iw" target="_blank" rel="noreferrer">Clay Banks</a>, <a href="https://unsplash.com/photos/dining-room-with-wooden-table-and-modern-chairs-AptA9A5gjL0" target="_blank" rel="noreferrer">Rochelle Lee</a> и <a href="https://unsplash.com/photos/modern-bedroom-with-large-white-wardrobe-and-dresser-Og7lgJjwESM" target="_blank" rel="noreferrer">Caroline Badran</a> / Unsplash.</div></footer>
 <script>
@@ -211,6 +250,24 @@
     document.getElementById("wardrobe-whatsapp-two").href="https://wa.me/996556117760?text="+query;
   }
   wardrobeType.addEventListener("change",updateWardrobe);wardrobeWidth.addEventListener("input",updateWardrobe);wardrobeHeight.addEventListener("input",updateWardrobe);updateWardrobe();
+  const requestForm=document.getElementById("request-form");
+  requestForm.addEventListener("submit",function(event){
+    event.preventDefault();
+    const formData=new FormData(requestForm);
+    const type=formData.get("type");
+    const name=String(formData.get("name")||"").trim();
+    const sizes=String(formData.get("sizes")||"").trim();
+    const details=String(formData.get("details")||"").trim();
+    const message=[
+      "Здравствуйте! Хочу оставить заявку на мебель.",
+      "Вид мебели: "+type,
+      "Имя: "+(name||"не указано"),
+      "Размеры: "+(sizes||"нужно обсудить"),
+      "Пожелания: "+(details||"нет")
+    ].join("\n");
+    const phone=event.submitter.dataset.phone;
+    window.open("https://wa.me/"+phone+"?text="+encodeURIComponent(message),"_blank","noopener,noreferrer");
+  });
   update();
 })();
 </script></body>
