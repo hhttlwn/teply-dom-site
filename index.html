@@ -150,6 +150,7 @@
       </div>
       <form class="request-form" id="request-form">
         <label class="calc-field"><span>Какая мебель нужна?</span><select name="type" required><option value="Кухня">Кухня</option><option value="Шкаф">Шкаф</option><option value="Другая мебель">Другая мебель</option></select></label>
+        <label class="calc-field" id="other-furniture-field" hidden><span>Какую именно мебель хотите заказать?</span><input name="otherFurniture" type="text" placeholder="Например: комод, тумба, прихожая"></label>
         <label class="calc-field"><span>Ваше имя</span><input name="name" type="text" autocomplete="name" placeholder="Как к вам обращаться?"></label>
         <label class="calc-field"><span>Размеры</span><input name="sizes" type="text" placeholder="Например: длина кухни 3 м"></label>
         <label class="calc-field"><span>Пожелания</span><textarea name="details" placeholder="Материал, цвет или другие детали"></textarea></label>
@@ -251,16 +252,27 @@
   }
   wardrobeType.addEventListener("change",updateWardrobe);wardrobeWidth.addEventListener("input",updateWardrobe);wardrobeHeight.addEventListener("input",updateWardrobe);updateWardrobe();
   const requestForm=document.getElementById("request-form");
+  const requestType=requestForm.elements.type;
+  const otherFurnitureField=document.getElementById("other-furniture-field");
+  const otherFurnitureInput=requestForm.elements.otherFurniture;
+  function updateOtherFurnitureField(){
+    const showOther=requestType.value==="Другая мебель";
+    otherFurnitureField.hidden=!showOther;
+    otherFurnitureInput.required=showOther;
+  }
+  requestType.addEventListener("change",updateOtherFurnitureField);
+  updateOtherFurnitureField();
   requestForm.addEventListener("submit",function(event){
     event.preventDefault();
     const formData=new FormData(requestForm);
     const type=formData.get("type");
+    const otherFurniture=String(formData.get("otherFurniture")||"").trim();
     const name=String(formData.get("name")||"").trim();
     const sizes=String(formData.get("sizes")||"").trim();
     const details=String(formData.get("details")||"").trim();
     const message=[
       "Здравствуйте! Хочу оставить заявку на мебель.",
-      "Вид мебели: "+type,
+      "Вид мебели: "+(type==="Другая мебель"?(otherFurniture||type):type),
       "Имя: "+(name||"не указано"),
       "Размеры: "+(sizes||"нужно обсудить"),
       "Пожелания: "+(details||"нет")
