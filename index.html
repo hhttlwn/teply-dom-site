@@ -61,7 +61,7 @@
         <option value="economy">Эконом — фасад ЛДСП + недорогая фурнитура</option>
         <option value="recommended">Рекомендованный — акрил + средняя фурнитура</option>
       </select></label>
-      <p class="calc-detail" id="package-detail">Фасад ЛДСП, недорогая фурнитура, столешница 32 мм.</p>
+      <p class="calc-detail" id="package-detail">Фасад ЛДСП, недорогая фурнитура, столешница 38 мм.</p>
       <label class="calc-field" for="kitchen-length"><span>Длина кухни</span>
         <div class="calc-length"><button type="button" id="length-minus" aria-label="Уменьшить длину">−</button><input id="kitchen-length" type="number" min="0.5" max="30" step="0.1" value="3" inputmode="decimal"><button type="button" id="length-plus" aria-label="Увеличить длину">+</button><small>пог. м</small></div>
         <p class="calc-helper">Укажи общую длину кухонного гарнитура в погонных метрах.</p>
@@ -70,7 +70,7 @@
     </div>
     <div class="calc-result" aria-live="polite">
       <div><div class="eyebrow">Предварительная оценка</div><h3 id="estimate-title">Эконом-комплектация · 3 пог. м</h3><strong class="calc-total" id="estimate-total">51 000–75 000 сом</strong><span class="calc-per-meter" id="estimate-per-meter">17 000–25 000 сом за погонный метр</span></div>
-      <div><div class="calc-includes"><strong>Уже включено</strong><p>Изготовление · сборка · установка<br>Бесплатная доставка по Бишкеку<br>Базовая мойка · столешница 32 мм</p></div>
+      <div><div class="calc-includes"><strong>Уже включено</strong><p>Изготовление · сборка · установка<br>Бесплатная доставка по Бишкеку<br>Базовая мойка · столешница 38 мм</p></div>
         <div class="calc-whatsapp"><a id="whatsapp-one" href="https://wa.me/996555424216" target="_blank" rel="noreferrer">WhatsApp · 0555 424 216 ↗</a><a id="whatsapp-two" href="https://wa.me/996556117760" target="_blank" rel="noreferrer">WhatsApp · 0556 117 760 ↗</a></div><p class="calc-note">Расчёт примерный. Точную стоимость подтвердим после согласования размеров и комплектации.</p></div>
     </div>
   </div>
@@ -80,8 +80,8 @@
 <script>
 (function(){
   const rates={
-    economy:{min:17000,max:25000,label:"Эконом-комплектация",detail:"Фасад ЛДСП, недорогая фурнитура, столешница 32 мм."},
-    recommended:{min:22000,max:32000,label:"Рекомендованная комплектация",detail:"Акриловый фасад, средняя фурнитура, столешница 32 мм."}
+    economy:{min:17000,max:25000,label:"Эконом-комплектация",detail:"Фасад ЛДСП, недорогая фурнитура, столешница 38 мм."},
+    recommended:{min:22000,max:32000,label:"Рекомендованная комплектация",detail:"Акриловый фасад, средняя фурнитура, столешница 38 мм."}
   };
   const packageInput=document.getElementById("kitchen-package");
   const lengthInput=document.getElementById("kitchen-length");
@@ -105,7 +105,7 @@
     detail.textContent=item.detail;
     total.textContent=fmt.format(min)+"–"+fmt.format(max)+" сом";
     perMeter.textContent=fmt.format(item.min)+"–"+fmt.format(item.max)+" сом за погонный метр";
-    const message="Здравствуйте! Рассчитайте, пожалуйста, кухню: "+item.label.toLowerCase()+", длина "+lengthLabel+" пог. м. Предварительная стоимость на сайте: "+fmt.format(min)+"–"+fmt.format(max)+" сом. Столешница 32 мм.";
+    const message="Здравствуйте! Рассчитайте, пожалуйста, кухню: "+item.label.toLowerCase()+", длина "+lengthLabel+" пог. м. Предварительная стоимость на сайте: "+fmt.format(min)+"–"+fmt.format(max)+" сом. Столешница 38 мм.";
     const query=encodeURIComponent(message);
     document.getElementById("whatsapp-one").href="https://wa.me/996555424216?text="+query;
     document.getElementById("whatsapp-two").href="https://wa.me/996556117760?text="+query;
