@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Sitemap: https://hhttlwn.github.io/teply-dom-site/sitemap.xml
+
