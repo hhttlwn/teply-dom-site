@@ -168,8 +168,8 @@
   let currentLang="ru";
   try{const savedLanguage=localStorage.getItem("jampo-language");currentLang=savedLanguage==="ky"||savedLanguage==="en"?savedLanguage:"ru";}catch(e){}
   const rates={
-    economy:{min:17000,max:25000,label:"Эконом-комплектация",labelKy:"Үнөмдүү топтом",detail:"Фасад ЛДСП, недорогая фурнитура, столешница 38 мм.",detailKy:"ЛДСП фасад, арзан фурнитура, 38 мм үстөл тактайы."},
-    recommended:{min:22000,max:32000,label:"Рекомендованная комплектация",labelKy:"Сунушталган топтом",detail:"Акриловый фасад, средняя фурнитура, столешница 38 мм.",detailKy:"Акрил фасад, орточо фурнитура, 38 мм үстөл тактайы."}
+    economy:{min:17000,max:25000,label:"Эконом-комплектация",labelKy:"Үнөмдүү топтом",labelEn:"Budget package",detail:"Фасад ЛДСП, недорогая фурнитура, столешница 38 мм.",detailKy:"ЛДСП фасад, арзан фурнитура, 38 мм үстөл тактайы.",detailEn:"Laminated chipboard fronts, basic hardware, 38 mm worktop."},
+    recommended:{min:22000,max:32000,label:"Рекомендованная комплектация",labelKy:"Сунушталган топтом",labelEn:"Recommended package",detail:"Акриловый фасад, средняя фурнитура, столешница 38 мм.",detailKy:"Акрил фасад, орточо фурнитура, 38 мм үстөл тактайы.",detailEn:"Acrylic fronts, mid-range hardware, 38 mm worktop."}
   };
   const packageInput=document.getElementById("kitchen-package");
   const lengthInput=document.getElementById("kitchen-length");
@@ -197,10 +197,10 @@
     const sinkX=pad+Math.floor(modules/2)*unit+11;
     parts.push('<polygon points="'+sinkX+',104 '+(sinkX+36)+',104 '+(sinkX+43)+',113 '+(sinkX+7)+',113" fill="#aeb8b1" stroke="#77766d" stroke-width="1"/><ellipse cx="'+(sinkX+25)+'" cy="108.5" rx="9" ry="3" fill="#dce2dc" stroke="#77766d"/><path d="M'+(sinkX+18)+' 103v-5q0-5 5-5t5 5" fill="none" stroke="#77766d" stroke-width="1.7"/>');
     parts.push('<polygon points="'+(pad+4)+',190 '+(width-pad+10)+',190 '+(width-pad+4)+',198 '+(pad+4)+',198" fill="#706d63"/><text x="'+(width/2)+'" y="226" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" letter-spacing="1" fill="#77766d">ПЕРСПЕКТИВА · '+modules+' СЕКЦИЙ</text></svg>');
-    parts[parts.length-1]=parts[parts.length-1].replace("ПЕРСПЕКТИВА · ",""+(currentLang==="ky"?"КӨРҮНҮШҮ · ":"ПЕРСПЕКТИВА · "));
+    parts[parts.length-1]=parts[parts.length-1].replace("ПЕРСПЕКТИВА · ",""+(currentLang==="ky"?"КӨРҮНҮШҮ · ":currentLang==="en"?"TOP VIEW · ":"ПЕРСПЕКТИВА · "));
     visual.innerHTML=parts.join("");
     visual.style.width=Math.min(100,32+Math.min(length,8)*8.5)+"%";
-    visualLength.textContent=String(length).replace(".",",")+(currentLang==="ky"?" погондук м":" пог. м");
+    visualLength.textContent=String(length).replace(".",",")+(currentLang==="ky"?" погондук м":currentLang==="en"?" linear m":" пог. м");
   }
   const fmt=new Intl.NumberFormat("ru-RU");
   function update(){
@@ -214,13 +214,13 @@
     const min=Math.round(item.min*length);
     const max=Math.round(item.max*length);
     const lengthLabel=String(length).replace(".",",");
-    const itemLabel=currentLang==="ky"?item.labelKy:item.label;
-    title.textContent=itemLabel+" · "+lengthLabel+(currentLang==="ky"?" погондук м":" пог. м");
+    const itemLabel=currentLang==="ky"?item.labelKy:currentLang==="en"?item.labelEn:item.label;
+    title.textContent=itemLabel+" · "+lengthLabel+(currentLang==="ky"?" погондук м":currentLang==="en"?" linear m":" пог. м");
     drawKitchen(length,packageKey);
-    detail.textContent=currentLang==="ky"?item.detailKy:item.detail;
+    detail.textContent=currentLang==="ky"?item.detailKy:currentLang==="en"?item.detailEn:item.detail;
     total.textContent=fmt.format(min)+"–"+fmt.format(max)+" сом";
-    perMeter.textContent=currentLang==="ky"?fmt.format(item.min)+"–"+fmt.format(item.max)+" сом / погондук метр":fmt.format(item.min)+"–"+fmt.format(item.max)+" сом за погонный метр";
-    const message=currentLang==="ky"?"Саламатсызбы! Ашканага эсеп чыгарып бериңизчи: "+itemLabel.toLowerCase()+", узундугу "+lengthLabel+" погондук метр. Сайттагы болжолдуу баа: "+fmt.format(min)+"–"+fmt.format(max)+" сом. Үстөл тактайы 38 мм.":"Здравствуйте! Рассчитайте, пожалуйста, кухню: "+itemLabel.toLowerCase()+", длина "+lengthLabel+" пог. м. Предварительная стоимость на сайте: "+fmt.format(min)+"–"+fmt.format(max)+" сом. Столешница 38 мм.";
+    perMeter.textContent=currentLang==="ky"?fmt.format(item.min)+"–"+fmt.format(item.max)+" сом / погондук метр":currentLang==="en"?fmt.format(item.min)+"–"+fmt.format(item.max)+" som per linear metre":fmt.format(item.min)+"–"+fmt.format(item.max)+" сом за погонный метр";
+    const message=currentLang==="ky"?"Саламатсызбы! Ашканага эсеп чыгарып бериңизчи: "+itemLabel.toLowerCase()+", узундугу "+lengthLabel+" погондук метр. Сайттагы болжолдуу баа: "+fmt.format(min)+"–"+fmt.format(max)+" сом. Үстөл тактайы 38 мм.":currentLang==="en"?"Hello! Please estimate a kitchen: "+itemLabel.toLowerCase()+", length "+lengthLabel+" linear metres. Estimated website price: "+fmt.format(min)+"–"+fmt.format(max)+" som. 38 mm worktop.":"Здравствуйте! Рассчитайте, пожалуйста, кухню: "+itemLabel.toLowerCase()+", длина "+lengthLabel+" пог. м. Предварительная стоимость на сайте: "+fmt.format(min)+"–"+fmt.format(max)+" сом. Столешница 38 мм.";
     const query=encodeURIComponent(message);
     document.getElementById("whatsapp-one").href="https://wa.me/996555424216?text="+query;
     document.getElementById("whatsapp-two").href="https://wa.me/996556117760?text="+query;
@@ -229,7 +229,7 @@
   lengthInput.addEventListener("input",update);
   document.getElementById("length-minus").addEventListener("click",function(){lengthInput.value=String(Math.max(0.5,Number(lengthInput.value||0.5)-0.1).toFixed(1));update();});
   document.getElementById("length-plus").addEventListener("click",function(){lengthInput.value=String(Math.min(30,Number(lengthInput.value||0.5)+0.1).toFixed(1));update();});
-  const wardrobeRates={hinged:{min:75,max:105,label:"Распашной шкаф",labelKy:"Эшиктери ачылма шкаф"},sliding:{min:120,max:180,label:"Шкаф-купе",labelKy:"Жылма эшиктүү шкаф"}};
+  const wardrobeRates={hinged:{min:75,max:105,label:"Распашной шкаф",labelKy:"Эшиктери ачылма шкаф",labelEn:"Hinged-door wardrobe"},sliding:{min:120,max:180,label:"Шкаф-купе",labelKy:"Жылма эшиктүү шкаф",labelEn:"Sliding-door wardrobe"}};
   const wardrobeType=document.getElementById("wardrobe-type");
   const wardrobeWidth=document.getElementById("wardrobe-width");
   const wardrobeHeight=document.getElementById("wardrobe-height");
@@ -246,12 +246,12 @@
     const minUsd=area*item.min,maxUsd=area*item.max;
     const minSom=Math.round(minUsd*87.4492/100)*100,maxSom=Math.round(maxUsd*87.4492/100)*100;
     const areaLabel=String(area.toFixed(2)).replace(".",",").replace(/,?0+$/g,"");
-    const wardrobeLabel=currentLang==="ky"?item.labelKy:item.label;
+    const wardrobeLabel=currentLang==="ky"?item.labelKy:currentLang==="en"?item.labelEn:item.label;
     document.getElementById("wardrobe-title").textContent=wardrobeLabel;
-    document.getElementById("wardrobe-area").textContent=(currentLang==="ky"?"Фасаддын аянты: ":"Площадь фасада: ")+areaLabel+" м² · "+item.min+"–"+item.max+" $/м²";
+    document.getElementById("wardrobe-area").textContent=(currentLang==="ky"?"Фасаддын аянты: ":currentLang==="en"?"Front area: ":"Площадь фасада: ")+areaLabel+" m² · "+item.min+"–"+item.max+" $/m²";
     document.getElementById("wardrobe-som").textContent=somFmt.format(minSom)+"–"+somFmt.format(maxSom)+" сом";
     document.getElementById("wardrobe-usd").textContent=usdFmt.format(minUsd)+"–"+usdFmt.format(maxUsd)+" $";
-    const message=currentLang==="ky"?"Саламатсызбы! Шкафты эсептеп бериңизчи: "+wardrobeLabel.toLowerCase()+", туурасы "+width+" см, бийиктиги "+height+" см, фасаддын аянты "+areaLabel+" м². Болжолдуу баа: "+usdFmt.format(minUsd)+"–"+usdFmt.format(maxUsd)+" $ / "+somFmt.format(minSom)+"–"+somFmt.format(maxSom)+" сом.":"Здравствуйте! Хочу рассчитать шкаф: "+wardrobeLabel.toLowerCase()+", ширина "+width+" см, высота "+height+" см, площадь фасада "+areaLabel+" м². Предварительная оценка: "+usdFmt.format(minUsd)+"–"+usdFmt.format(maxUsd)+" $ / "+somFmt.format(minSom)+"–"+somFmt.format(maxSom)+" сом.";
+    const message=currentLang==="ky"?"Саламатсызбы! Шкафты эсептеп бериңизчи: "+wardrobeLabel.toLowerCase()+", туурасы "+width+" см, бийиктиги "+height+" см, фасаддын аянты "+areaLabel+" м². Болжолдуу баа: "+usdFmt.format(minUsd)+"–"+usdFmt.format(maxUsd)+" $ / "+somFmt.format(minSom)+"–"+somFmt.format(maxSom)+" сом.":currentLang==="en"?"Hello! Please estimate a wardrobe: "+wardrobeLabel.toLowerCase()+", width "+width+" cm, height "+height+" cm, front area "+areaLabel+" m². Estimated price: "+usdFmt.format(minUsd)+"–"+usdFmt.format(maxUsd)+" USD / "+somFmt.format(minSom)+"–"+somFmt.format(maxSom)+" som.":"Здравствуйте! Хочу рассчитать шкаф: "+wardrobeLabel.toLowerCase()+", ширина "+width+" см, высота "+height+" см, площадь фасада "+areaLabel+" м². Предварительная оценка: "+usdFmt.format(minUsd)+"–"+usdFmt.format(maxUsd)+" $ / "+somFmt.format(minSom)+"–"+somFmt.format(maxSom)+" сом.";
     const query=encodeURIComponent(message);
     document.getElementById("wardrobe-whatsapp-one").href="https://wa.me/996555424216?text="+query;
     document.getElementById("wardrobe-whatsapp-two").href="https://wa.me/996556117760?text="+query;
@@ -277,7 +277,14 @@
     const sizes=String(formData.get("sizes")||"").trim();
     const details=String(formData.get("details")||"").trim();
     const typeKy=type==="Кухня"?"ашкана":type==="Шкаф"?"шкаф":"башка эмерек";
-    const message=currentLang==="ky"?[
+    const typeEn=type==="Кухня"?"kitchen":type==="Шкаф"?"wardrobe":"other furniture";
+    const message=currentLang==="en"?[
+      "Hello! I’d like to request custom furniture.",
+      "Furniture type: "+(type==="Другая мебель"?(otherFurniture||"other furniture"):typeEn),
+      "Name: "+(name||"not provided"),
+      "Dimensions: "+(sizes||"to be discussed"),
+      "Preferences: "+(details||"none")
+    ].join("\n"):currentLang==="ky"?[
       "Саламатсызбы! Эмерекке буйрутма бергим келет.",
       "Эмеректин түрү: "+(type==="Другая мебель"?(otherFurniture||"башка эмерек"):typeKy),
       "Аты: "+(name||"көрсөтүлгөн жок"),
@@ -332,7 +339,7 @@
     toggle.title=toggle.getAttribute("aria-label");
     document.title=lang==="ru"?"Jampo style (Жампо Стиль) — мебель на заказ в Бишкеке":lang==="ky"?"Jampo style — Бишкекте буйрутма эмерек":"Jampo style — custom furniture in Bishkek";
     const description=document.querySelector('meta[name="description"]');
-    if(description)description.content=lang==="ru"?"Jampo style — мебель на заказ в Бишкеке: кухни, шкафы и мебель по вашим размерам. Бесплатная доставка по городу. Рассчитайте кухню или шкаф на сайте.":"Jampo style — Бишкекте ашканаларды, шкафтарды жана башка эмеректерди буйрутма менен жасоо. Шаар ичинде жеткирүү акысыз.";
+    if(description)description.content=lang==="ru"?"Jampo style — мебель на заказ в Бишкеке: кухни, шкафы и мебель по вашим размерам. Бесплатная доставка по городу. Рассчитайте кухню или шкаф на сайте.":lang==="ky"?"Jampo style — Бишкекте ашканаларды, шкафтарды жана башка эмеректерди буйрутма менен жасоо. Шаар ичинде жеткирүү акысыз.":"Jampo style makes custom kitchens, wardrobes and other furniture in Bishkek. Free city delivery.";
   }
   function setLanguage(lang){
     currentLang=lang;
