@@ -316,8 +316,8 @@
       const original=originalTextNodes.get(node);
       if(lang==="ru"){node.nodeValue=original;continue;}
       const activeTranslations=lang==="ky"?kyTranslations:enTranslations;
-      const leading=original.match(/^\\s*/)?.[0]||"";
-      const trailing=original.match(/\\s*$/)?.[0]||"";
+      const leading=original.match(/^\s*/)?.[0]||"";
+      const trailing=original.match(/\s*$/)?.[0]||"";
       const key=normalizeI18n(original);
       if(Object.prototype.hasOwnProperty.call(activeTranslations,key))node.nodeValue=leading+activeTranslations[key]+trailing;
     }
